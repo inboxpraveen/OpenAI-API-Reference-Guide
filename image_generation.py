@@ -4,7 +4,19 @@ A Simple Python Instruction Guide on how to use OpenAI API for Image Generation
 
 import openai, sys
 
-class ImageGenerator(type):
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+class ImageGenerator:
     
     __slots__ = [
         'IMAGE_HEIGHT',
@@ -26,9 +38,9 @@ class ImageGenerator(type):
                 size                = f"{self.IMAGE_HEIGHT}x{self.IMAGE_WIDTH}"
             )
             image_url = response['data'][0]['url']
-            print(f"[URL] Please go to the following URL to see your Generated Image: {image_url}")
+            print(f"[URL] Please go to the following URL to see your Generated Image: \n{bcolors.OKGREEN}{image_url}{bcolors.ENDC}")
         except Exception as e:
-            sys.exit(f"Oops! Something went wrong while generating your image. Error - {e}")
+            sys.exit(f"Oops! Something went wrong while generating your image. \nError - {bcolors.FAIL}{e}{bcolors.ENDC}")
 
 
 if __name__ == '__main__':
